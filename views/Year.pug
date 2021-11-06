@@ -1,0 +1,17 @@
+extends layout
+
+block content
+  h1= title
+  - var results = [{"Day":"Wed", "Week":27,"Month":"November"},{"Day":"Mon", "Week":17,"Month":"May"},{"Day":"thurs", "Week":11,"Month":"April"}]
+  div(class="container-fuild")
+    div(class="row")
+      each result,index in results
+        div(class = "col-sm-2" id=index onclick=`buy(${index})`) 
+          p #{result.Day}
+          p #{result.Week}
+          p #{result.Month}  
+
+  script.
+   function buy(element){
+     alert(`You purchased item ${element+1}.`)
+    }
