@@ -1,6 +1,6 @@
 var Year = require('../models/Year'); 
  
-// List of all Years 
+// List of all Year 
 exports.Year_list = function(req, res) { 
     res.send('NOT IMPLEMENTED: Year list'); 
 }; 
@@ -11,9 +11,23 @@ exports.Year_detail = function(req, res) {
 }; 
  
 // Handle Year create on POST. 
-exports.Year_create_post = function(req, res) { 
-    res.send('NOT IMPLEMENTED: Year create POST'); 
-}; 
+exports.Year_create_post = async function (req, res) {
+    console.log(req.body)
+    let document = new Year();
+    // We are looking for a body, since POST does not have query parameters.
+    // Even though bodies can be in many different formats, we will be picky
+    // and require that it be a json object
+    document.Day = req.body.Day;
+    document.Week = req.body.Week;
+    document.Month = req.body.Month;
+    try {
+        let result = await document.save();
+        res.send(result);
+    } catch (err) {
+        res.status(500);
+        res.send(`{"error": ${err}}`);
+    }
+};
  
 // Handle Year delete form on DELETE. 
 exports.Year_delete = function(req, res) { 
@@ -24,3 +38,18 @@ exports.Year_delete = function(req, res) {
 exports.Year_update_put = function(req, res) { 
     res.send('NOT IMPLEMENTED: Year update PUT' + req.params.id); 
 }; 
+
+// List of all Costumes 
+exports.Year_list = async function(req, res) { 
+    try{ 
+        theYear = await Year.find(); 
+        res.send(theYear); 
+    } 
+    catch(err){ 
+        res.status(500); 
+        res.send(`{"error": ${err}}`); 
+    }   
+}; 
+
+
+
