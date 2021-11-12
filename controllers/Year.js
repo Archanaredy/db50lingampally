@@ -39,7 +39,7 @@ exports.Year_update_put = function(req, res) {
     res.send('NOT IMPLEMENTED: Year update PUT' + req.params.id); 
 }; 
 
-// List of all Costumes 
+// List of all Years 
 exports.Year_list = async function(req, res) { 
     try{ 
         theYear = await Year.find(); 
@@ -49,7 +49,20 @@ exports.Year_list = async function(req, res) {
         res.status(500); 
         res.send(`{"error": ${err}}`); 
     }   
+};
+
+// for a specific Year. 
+exports.Year_detail = async function(req, res) { 
+    console.log("detail"  + req.params.id) 
+    try { 
+        result = await Year.findById( req.params.id) 
+        res.send(result) 
+    } catch (error) { 
+        res.status(500) 
+        res.send(`{"error": document for id ${req.params.id} not found`); 
+    } 
 }; 
+ 
 
 
 
