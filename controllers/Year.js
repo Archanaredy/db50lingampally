@@ -35,8 +35,23 @@ exports.Year_delete = function(req, res) {
 }; 
  
 // Handle Year update form on PUT. 
-exports.Year_update_put = function(req, res) { 
-    res.send('NOT IMPLEMENTED: Year update PUT' + req.params.id); 
+exports.Year_update_put = async function(req, res) { 
+    console.log(`update on id ${req.params.id} with body 
+${JSON.stringify(req.body)}`) 
+    try { 
+        let toUpdate = await Year.findById( req.params.id) 
+        // Do updates of properties 
+        if(req.body.Day) toUpdate.Day = req.body.Day; 
+        if(req.body.Week) toUpdate.Week = req.body.Week; 
+        if(req.body.Month) toUpdate.Month = req.body.Month; 
+        let result = await toUpdate.save(); 
+        console.log("Sucess " + result) 
+        res.send(result) 
+    } catch (err) { 
+        res.status(500) 
+        res.send(`{"error": ${err}: Update for id ${req.params.id} 
+failed`); 
+    } 
 }; 
 
 // List of all Years 
