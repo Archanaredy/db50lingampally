@@ -22,3 +22,6 @@ router.get('/create', Year_controller.Year_create_Page);
 
 /*GET create update page*/
 router.get('/update', Year_controller.Year_update_Page);
+
+/*GET create delete page*/
+router.get('/delete', Year_controller.Year_delete_Page);

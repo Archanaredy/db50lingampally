@@ -1,0 +1,51 @@
+extends layout 
+ 
+block content 
+  h1= title 
+ 
+  if (toShow == null) 
+    h2 No instance to delete 
+  else 
+    - let Yearid  = toShow._id 
+    - let Day  = toShow.Day  
+    - let Week = toShow.Week  
+    - let Month  = toShow.Month  
+    - let actionid = "/resource/Year/" + Yearid 
+    script let actionid = "#{actionid}" 
+    div 
+      div.row 
+        div(class='YearAttr mr-3') Year ID is: 
+        div #{Yearid}  
+        div(class='YearAttr mr-3') Day  is: 
+        div #{Day}
+        div(class='YearAttr mr-3') Week  is:  
+        div #{Week} 
+        div(class='YearAttr mr-3') Month  is:  
+        div #{Month}
+        
+ 
+    button(class="btn btn-danger m-2" onclick="deleteOnid()") Delete 
+    button(class="btn btn-secondary m-2" onclick="window.location.href='/Year'") Cancel 
+ 
+  script. 
+    function cancel() { 
+      // Go back to the home page for the Year collection 
+      window.location.href='/Year' 
+    } 
+  script. 
+    function deleteOnid() { 
+      console.log("starting delete") 
+      // delete first 
+      fetch(actionid, { 
+        method: 'DELETE'      // Don't need a body for the delete 
+      }).then((resp) => { 
+        return resp.json(); // or resp.text() or whatever the server sends 
+      }).then((body) => { 
+        alert("Delete succeded") 
+        window.location.href='/Year' 
+        // TODO handle body 
+      }).catch((error) => { 
+        // TODO handle error 
+        alert("Delete failed " + error ) 
+      }); 
+    }

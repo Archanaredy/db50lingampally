@@ -9,7 +9,10 @@ block content
         div(class = "col-sm-2" id=index onclick=`buy(${index})`) 
           p #{result.Day}
           p #{result.Week}
-          p #{result.Month}  
+          p #{result.Month} 
+          a(href = "Year/detail/?id=" + result._id) detail --
+          a(href = "Year/update/?id=" + result._id) update --
+          a(href = "Year/delete/?id=" + result._id) delete 
 
   script.
    function buy(element){
