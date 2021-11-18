@@ -101,5 +101,33 @@ exports.Year_view_one_Page = async function(req, res) {
 };
  
 
+// Handle building the view for creating a Year. 
+// No body, no in path parameter, no query. 
+// Does not need to be async 
+exports.Year_create_Page =  function(req, res) { 
+    console.log("create view") 
+    try{ 
+        res.render('Yearcreate', { title: 'Year Create'}); 
+    } 
+    catch(err){ 
+        res.status(500) 
+        res.send(`{'error': '${err}'}`); 
+    } 
+}; 
+
+// Handle building the view for updating a Year. 
+// query provides the id 
+exports.Year_update_Page =  async function(req, res) { 
+    console.log("update view for item "+req.query.id) 
+    try{ 
+        let result = await Year.findById(req.query.id) 
+        res.render('Yearupdate', { title: 'Year Update', toShow: result }); 
+    } 
+    catch(err){ 
+        res.status(500) 
+        res.send(`{'error': '${err}'}`); 
+    } 
+}; 
+
 
 

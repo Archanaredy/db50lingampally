@@ -17,3 +17,8 @@ router.get('/detail', Year_controller.Year_view_one_Page);
 module.exports = router;
 
 
+/* GET create Year page  */ 
+router.get('/create', Year_controller.Year_create_Page);
+
+/*GET create update page*/
+router.get('/update', Year_controller.Year_update_Page);
