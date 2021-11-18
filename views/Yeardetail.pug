@@ -1,0 +1,22 @@
+extends layout 
+ 
+block content 
+  h1= title 
+ 
+  - let Yearid = toShow._id 
+  - let Day= toShow.Day
+  - let Week = toShow.Week
+  - let Month = toShow.Month 
+  div 
+    div.row 
+      div(class='YearAttr mr-3') Year ID is: 
+      div #{Yearid} 
+    div.row 
+      div(class='YearAttr mr-3') Day is: 
+      div #{Day} 
+    div.row 
+      div(class='YearAttr mr-3') Week is: 
+      div #{Week} 
+    div.row 
+      div(class='YearAttr mr-3') Month is: 
+      div #{Month} 

@@ -11,3 +11,9 @@ module.exports = router;
 
 // GET request for oneYear. 
 router.get('/Year/:id',Year_controller.Year_detail); 
+
+/* GET detail Year page */ 
+router.get('/detail', Year_controller.Year_view_one_Page); 
+module.exports = router;
+
+
