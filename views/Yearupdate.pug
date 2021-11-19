@@ -1,30 +1,28 @@
-extends layout 
- 
-block content 
-  h1= title 
- 
-  - let Yearid  = toShow._id 
-  - let Day  = toShow.Types
-  - let Week   = toShow.NumberOfLang
-  - let Month  = toShow.Data 
-   
+extends layout
+
+block content
+  h1= title
+
+  - let Yearid = toShow._id
+  - let Day = toShow.Day
+  - let Week = toShow.Week
+  - let Month = toShow.Month 
+
   div.row(class='mb-2') 
     div.mr-1 ID is 
     div #{Yearid} 
   - let actionid = "/resource/Year/" + Yearid 
   form(id='YearForm', action= actionid, method="PUT") 
     div.form-group 
-        label.YearAttr(for='Types') Day 
-        input#Types(type='text', name='Year_type', value= Day  ) 
+      label.YearAttr(for='Day') Year Day
+      input#Day(type='text', Day='Day', value= Day ) 
     div.form-group 
-        label.YearAttr(for='size') Week   
-        input#NumberOfLang(type='number', name='size', value= Week) 
+      label.YearAttr(for='Week') Year Week
+      input#Week(type='number', Day='Week', value= Week ) 
     div.form-group 
-        label.YearAttr(for='cost') Month 
-        input#Data(type='text', name='cost', value= Data ) 
+      label.YearAttr(for='Month') Year Month
+      input#Month(type='text', Day='Month', value= Month ) 
     input(type="submit") 
-
-    button(class="btn btn-secondary m-2" onclick="window.location.href='/Year'") Cancel 
  
   script. 
     document.forms['YearForm'].addEventListener('submit', (event) => { 
@@ -42,4 +40,4 @@ block content
         // TODO handle error 
         alert("Update failed " + error ) 
       }); 
-    });
+    }); 

@@ -1,14 +1,4 @@
-var Year = require('../models/Year'); 
- 
-// List of all Year 
-exports.Year_list = function(req, res) { 
-    res.send('NOT IMPLEMENTED: Year list'); 
-}; 
- 
-// for a specific Year. 
-exports.Year_detail = function(req, res) { 
-    res.send('NOT IMPLEMENTED: Year detail: ' + req.params.id); 
-}; 
+var Year = require('../models/Year');
  
 // Handle Year create on POST. 
 exports.Year_create_post = async function (req, res) {
@@ -44,7 +34,7 @@ exports.Year_delete = async function(req, res) {
  
 // Handle Year update form on PUT. 
 exports.Year_update_put = async function(req, res) { 
-    console.log(`update on id ${req.params.id} with body 
+console.log(`update on id ${req.params.id} with body 
 ${JSON.stringify(req.body)}`) 
     try { 
         let toUpdate = await Year.findById( req.params.id) 
@@ -73,6 +63,18 @@ exports.Year_list = async function(req, res) {
         res.send(`{"error": ${err}}`); 
     }   
 };
+// VIEWS
+// Handle a show all view 
+exports.Year_view_all_Page = async function(req, res) {
+    try{
+        theYear = await Year.find();
+        res.render('Year', { title: 'Year Search Results', results: theYear });
+        }
+        catch(err){
+        res.status(500);
+        res.send(`{"error": ${err}}`);
+        }
+        };
 
 // for a specific Year. 
 exports.Year_detail = async function(req, res) { 
@@ -91,8 +93,7 @@ exports.Year_view_one_Page = async function(req, res) {
     console.log("single view for id "  + req.query.id) 
     try{ 
         result = await Year.findById( req.query.id) 
-        res.render('Yeardetail',  
-{ title: 'Year Detail', toShow: result }); 
+        res.render('Yeardetail', { title: 'Year Detail', toShow: result }); 
     } 
     catch(err){ 
         res.status(500) 
@@ -134,8 +135,7 @@ exports.Year_delete_Page = async function(req, res) {
     console.log("Delete view for id "  + req.query.id) 
     try{ 
         result = await Year.findById(req.query.id) 
-        res.render('Yeardelete', { title: 'Year Delete', toShow: 
-result }); 
+        res.render('Yeardelete', { title: 'Year Delete', toShow: result }); 
     } 
     catch(err){ 
         res.status(500) 

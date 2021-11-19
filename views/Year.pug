@@ -1,20 +1,29 @@
 extends layout
 
 block content
-  h1= title
-  - var results = [{"Day":"Wed", "Week":27,"Month":"November"},{"Day":"Mon", "Week":17,"Month":"May"},{"Day":"thurs", "Week":11,"Month":"April"}]
+  h1=title
+  - var results = [{"Day":"Wed", "Week":23,"Month":"November"},{"Day":"Mon", "Week":22,"Month":"May"},{"Day":"thurs", "Week":53,"Month":"April"}]
+  - let o;
+  - let items = result;
   div(class="container-fuild")
-    div(class="row")
-      each result,index in results
-        div(class = "col-sm-2" id=index onclick=`buy(${index})`) 
+    div(class="row m-1")
+    div(class="row row-cols-1 row-col-sm-4 g-6")
+      each result,index in results 
+        - let destination = `dispatch(\"/Year/update?id=${result._id}\")`
+           
           p #{result.Day}
           p #{result.Week}
-          p #{result.Month} 
-          a(href = "Year/detail/?id=" + result._id) detail --
-          a(href = "Year/update/?id=" + result._id) update --
-          a(href = "Year/delete/?id=" + result._id) delete 
+          p #{result.Month}  
+          
+          <br><br>
+          button.btn(class="btn-warning ml-1", onclick= destination) update
 
   script.
    function buy(element){
      alert(`You purchased item ${element+1}.`)
+    }
+
+  script.
+    function dispatch(path){
+      window.location.href=path
     }

@@ -3,67 +3,36 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-var Year = require("./models/Year");
+var mongoose = require('mongoose');
+var Year = require('./models/Year');
 
-const connectionString =  
-process.env.MONGO_CON 
+const connectionString =  process.env.MONGO_CON 
 mongoose = require('mongoose'); 
-mongoose.connect(connectionString,  
-{useNewUrlParser: true, 
-useUnifiedTopology: true});
+mongoose.connect(connectionString,{useNewUrlParser: true, useUnifiedTopology: true});
 
 async function recreateDB() {
-
     // Delete everything
-  
     await Year.deleteMany();
-  
-    let instance1 = new Year({Day: "Wed",Week: "27",Month: "November"});
-  
-  
-  
+    let instance1 = new Year({Day: "Wed",Week: 27,Month: "November"});
     instance1.save(function (err, doc) {
-  
       if (err) return console.error(err);
-  
       console.log("First object saved")
-  
-    });
-  
-  
-  
-    let instance2 = new Year({Day: "Mon",Week: "17",Month: "May"});
-  
+    }); 
+    let instance2 = new Year({Day: "Mon",Week: 17,Month: "May"});
     instance2.save(function (err, doc) {
-  
       if (err) return console.error(err);
-  
       console.log("Second object saved")
-  
-    });
-  
-  
-  
-    let instance3 = new Year({Day: "thurs", Week: "11",Month: "April"});  
-  
+    }); 
+    let instance3 = new Year({Day: "thurs", Week: 11,Month: "April"});  
     instance3.save(function (err, doc) {
-  
       if (err) return console.error(err);
-  
       console.log("Third object saved")
-  
     });
-  
   }
   
-  
-  
   let reseed = true;
-  
   if (reseed) {
-  
     recreateDB();
-  
   }
 
 var indexRouter = require('./routes/index');
