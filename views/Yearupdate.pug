@@ -15,13 +15,13 @@ block content
   form(id='YearForm', action= actionid, method="PUT") 
     div.form-group 
       label.YearAttr(for='Day') Year Day
-      input#Day(type='text', Day='Day', value= Day ) 
+      input#Day(type='text', name='Day', value= Day ) 
     div.form-group 
       label.YearAttr(for='Week') Year Week
-      input#Week(type='number', Day='Week', value= Week ) 
+      input#Week(type='number', name='Week', value= Week ) 
     div.form-group 
       label.YearAttr(for='Month') Year Month
-      input#Month(type='text', Day='Month', value= Month ) 
+      input#Month(type='text', name='Month', value= Month ) 
     input(type="submit") 
  
   script. 
